@@ -1,0 +1,6 @@
+streamlit
+pandas
+numpy
+pyet
+matplotlib
+st_pages
