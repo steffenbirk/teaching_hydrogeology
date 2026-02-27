@@ -26,7 +26,7 @@ st.markdown('''
         For each day, the model adds the difference between precipitation and actual evapotranspiration to the value of the amount of water that is in the root zone at the beginning of the day, yielding the starting value for the calulation of the subsuqent day.
             ''')
 
-st.image('gw_recharge_app/images/water_stress.png', caption='Fig.2: Linear reduction function describing how actual evapotranspiration decreases in proportion to the amount of water remaining in the soil water storage (modified after FAO Irrigation and Drainage Paper No. 56)')
+st.image('images\water_stress.png', caption='Fig.2: Linear reduction function describing how actual evapotranspiration decreases in proportion to the amount of water remaining in the soil water storage (modified after FAO Irrigation and Drainage Paper No. 56)')
 
 st.subheader(':blue-background[Groundwater Recharge]', divider="blue")
 col1, col2, col3 = st.columns(3)
@@ -196,9 +196,9 @@ st.pyplot(fig2)
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("gw_recharge_app/pages/04_ETP_PM.py")
+        st.switch_page("pages\\04_ETP_PM.py")
 with columnsN1[1]:
     st.subheader(':blue[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("gw_recharge_app/pages/06_Linear_Reservoir.py")
+        st.switch_page("pages\\06_Linear_Reservoir.py")

@@ -28,7 +28,7 @@ columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    st.image('gw_recharge_app/images/CC_BY-SA_icon.png')
+    st.image('images\CC_BY-SA_icon.png')
 
 
 # Navigation at the bottom of the side - useful for mobile phone users     
@@ -36,6 +36,6 @@ with columns_lic[1]:
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("gw_recharge_app/pages/07_About.py")
+        st.switch_page("pages\\07_About.py")
 with columnsN1[1]:
     st.subheader(':blue[**Navigation**]')
