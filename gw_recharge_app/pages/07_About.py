@@ -10,18 +10,18 @@ st.markdown(
 
 left_co, cent_co = st.columns((20,60))
 with left_co:
-    st.image('gw_recharge_app\\images\\iNUX_wLogo.png')
+    st.image('gw_recharge_app/images/iNUX_wLogo.png')
 with cent_co:
-    st.image('gw_recharge_app\\images\\1200px-Erasmus+_Logo.svg.png')
+    st.image('gw_recharge_app/images/1200px-Erasmus+_Logo.svg.png')
 
 # Navigation at the bottom of the side - useful for mobile phone users     
         
 columnsN1 = st.columns((1,1,1), gap = 'large')
 with columnsN1[0]:
     if st.button("Previous page"):
-        st.switch_page("gw_recharge_app\\pages\\06_Linear_Reservoir.py")
+        st.switch_page("gw_recharge_app/pages/06_Linear_Reservoir.py")
 with columnsN1[1]:
     st.subheader(':blue[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("gw_recharge_app\\pages\\08_References.py")
+        st.switch_page("gw_recharge_app/pages/08_References.py")
