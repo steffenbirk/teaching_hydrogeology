@@ -5,7 +5,7 @@ st.set_page_config(page_title = "iNUX - Groundwater Recharge", page_icon="images
 
 pages={
     '👋 Intro':[
-        st.Page('gw_recharge_app/pages/01_Intro.py',title='The Groundwater Recharge App')],
+        st.Page('pages/01_Intro.py',title='The Groundwater Recharge App')],
     '🌱 Evapotranspiration':[
         st.Page('gw_recharge_app/pages/02_ETP_Oudin.py',title='The Oudin-Method'),
         st.Page('gw_recharge_app/pages/03_ETP_Haude.py', title='The Haude-Method'),
