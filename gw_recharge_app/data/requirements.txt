@@ -1,0 +1,6 @@
+streamlit>=1.30
+st_pages
+pandas
+numpy 
+pyet
+matplolib

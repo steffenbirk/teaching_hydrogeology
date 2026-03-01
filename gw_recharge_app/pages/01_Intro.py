@@ -9,7 +9,6 @@ st.markdown("""
             This app will allow you to learn more about Evapotranspiration, Groundwater Recharge and the Runoff from a Linear Reservoir.
             For better visualisation different methods are applied to meteorological data from the City of Graz (Austria).
             """
-            
 )
 st.subheader(':blue-background[Where does the data come from ?]', divider="blue")
 
