@@ -13,7 +13,7 @@ st.markdown('''
 
 col1, col2= st.columns(2)
 with col1:
-    st.image('images/water_balance_crop.png', caption='Fig.1: Water balance of the root zone (modified after FAO Irrigation and Drainage Paper No. 56)')            
+    st.image('../images/water_balance_crop.png', caption='Fig.1: Water balance of the root zone (modified after FAO Irrigation and Drainage Paper No. 56)')            
 with col2:
     st.markdown('''            
         The soil water storage is replenished if precipitation (if appropriate, reduced by runoff) exceeds potential evapotranspiration. 
@@ -26,7 +26,7 @@ st.markdown('''
         For each day, the model adds the difference between precipitation and actual evapotranspiration to the value of the amount of water that is in the root zone at the beginning of the day, yielding the starting value for the calulation of the subsuqent day.
             ''')
 
-st.image('images/water_stress.png', caption='Fig.2: Linear reduction function describing how actual evapotranspiration decreases in proportion to the amount of water remaining in the soil water storage (modified after FAO Irrigation and Drainage Paper No. 56)')
+st.image('../images/water_stress.png', caption='Fig.2: Linear reduction function describing how actual evapotranspiration decreases in proportion to the amount of water remaining in the soil water storage (modified after FAO Irrigation and Drainage Paper No. 56)')
 
 st.subheader(':blue-background[Groundwater Recharge]', divider="blue")
 col1, col2, col3 = st.columns(3)
