@@ -108,4 +108,4 @@ with columnsN1[1]:
     st.subheader(':blue[**Navigation**]')
 with columnsN1[2]:
     if st.button("Next page"):
-        st.switch_page("pages\\02_ETP_Oudin.py")
+        st.switch_page("pages/02_ETP_Oudin.py")
