@@ -54,8 +54,6 @@ st.write(data.head())
 
 # User input for observation period
 ## look for the oldest and newest data within the given dataframe
-min_date = data.index.min().date()
-max_date = data.index.max().date()
 
 st.subheader(':blue-background[Select your measurement period:]', divider="blue")
 st.write('''To define the time period, you would like to observe, use the date input widget below. 
@@ -78,6 +76,7 @@ if data.empty:
 
 min_date = data.index.min().to_pydatetime().date()
 max_date = data.index.max().to_pydatetime().date()
+
 selected_timespan = st.date_input('👇 here you can select a time periode 👇',value=('2020-01-01','2020-12-31'), min_value=min_date, max_value=max_date, format='YYYY-MM-DD')
 start_date = pd.to_datetime(selected_timespan[0])
 end_date = pd.to_datetime(selected_timespan[1])
