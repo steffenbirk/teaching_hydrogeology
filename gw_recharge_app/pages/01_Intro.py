@@ -63,25 +63,21 @@ st.write('''To define the time period, you would like to observe, use the date i
          Just keep in mind that more data might need more time processing.''')
 
 col1, col2 = st.columns(2)
-min_date = pd.to_datetime(data.index.min()).date()
-max_date = pd.to_datetime(data.index.max()).date()
+if "date" in data.columns:
+    data = data.copy()
+    data["date"] = pd.to_datetime(data["date"], errors="coerce")
+    data = data.dropna(subset=["date"]).set_index("date").sort_index()
+else:
+    data = data.copy()
+    data.index = pd.to_datetime(data.index, errors="coerce")
+    data = data[~data.index.isna()].sort_index()
 
-selected_timespan = st.date_input(
-    '👇 here you can select a time periode 👇',
-    value=(date(2020, 1, 1), date(2020, 12, 31)),   # <-- use date objects, not strings
-    min_value=min_date,
-    max_value=max_date,
-    format='YYYY-MM-DD'
-)
-start_date = pd.to_datetime(selected_timespan[0])
-end_date = pd.to_datetime(selected_timespan[1])
+if data.empty:
+    st.error("No valid dates found. Check the date column / format in your CSV.")
+    st.stop()
 
-selected_data = data.loc[start_date:end_date]
-st.session_state.data = selected_data
-st.session_state.ETP = pd.DataFrame(index=st.session_state.data.index)
-st.session_state.ETA = pd.DataFrame(index=st.session_state.data.index)
-st.session_state.gw_recharge = pd.DataFrame(index=st.session_state.data.index)
-'''
+min_date = data.index.min().to_pydatetime().date()
+max_date = data.index.max().to_pydatetime().date()
 selected_timespan = st.date_input('👇 here you can select a time periode 👇',value=('2020-01-01','2020-12-31'), min_value=min_date, max_value=max_date, format='YYYY-MM-DD')
 start_date = pd.to_datetime(selected_timespan[0])
 end_date = pd.to_datetime(selected_timespan[1])
@@ -90,7 +86,7 @@ st.session_state.data=data.loc[selected_timespan[0]:selected_timespan[1]]
 st.session_state.ETP = pd.DataFrame(index=st.session_state.data.index)
 st.session_state.ETA = pd.DataFrame(index=st.session_state.data.index)
 st.session_state.gw_recharge = pd.DataFrame(index=st.session_state.data.index)
-'''
+
 # calculating data that needs to be available from multiple pages and saving data in session state
 lat_graz = 47.076668*np.pi/180  # in rad
 ETP_oudin=pyet.oudin(selected_data['T_a'], lat_graz)
