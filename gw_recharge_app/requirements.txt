@@ -5,3 +5,4 @@ pyet
 matplotlib
 st_pages
 pathlib
+datetime
