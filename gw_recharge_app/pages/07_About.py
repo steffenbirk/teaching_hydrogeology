@@ -10,9 +10,9 @@ st.markdown(
 
 left_co, cent_co = st.columns((20,60))
 with left_co:
-    st.image('images\\iNUX_wLogo.png')
+    st.image('gw_recharge_app/assets/images/iNUX_wLogo.png')
 with cent_co:
-    st.image('images\\1200px-Erasmus+_Logo.svg.png')
+    st.image('gw_recharge_app/assets/images/1200px-Erasmus+_Logo.svg.png')
 
 # Navigation at the bottom of the side - useful for mobile phone users     
         
