@@ -1,5 +1,11 @@
 import streamlit as st
 from st_pages import add_page_title, get_nav_from_toml
+from pathlib import Path
+import pandas as pd
+
+ROOT = Path(__file__).parent  # repo root
+DATA = ROOT / "data"
+IMAGES = ROOT / "assets" / "images"
 
 st.set_page_config(page_title = "iNUX - Groundwater Recharge", page_icon="images\iNUX_wLogo.png")
 
