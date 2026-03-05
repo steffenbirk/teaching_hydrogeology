@@ -6,14 +6,6 @@ from data_loader import load_data, get_csv_path
 from datetime import date
 from pathlib import Path
 
-import os
-st.write("Working directory:", os.getcwd())
-st.write("File location:", Path(__file__).resolve())
-
-ROOT = Path(__file__).resolve().parents[1]  # go up from /pages to repo root
-DATA = ROOT / "data"
-IMAGES = ROOT / "assets" / "images"
-
 st.subheader(':blue-background[Welcome to the "Groundwater Recharge App !" 👋]', divider="blue")
 
 st.markdown("""
@@ -49,7 +41,7 @@ with col2:
     st.map(df, latitude= 'lat', longitude='long', color='#4292C6', height=350)
     st.write(':gray[*Figure 1: Map showing the location of the Meterological Station of the Universitiy of Graz.*]')
 
-data = pd.read_csv('data/UniGraz1990-2020.csv', index_col=0, parse_dates=True)
+data = pd.read_csv('GW_RECHARGE_APP/data/UniGraz1990-2020.csv', index_col=0, parse_dates=True)
 st.write(''':gray[*Table 1: Head of the provided DataFrame, where: T_14...Temperature at 14:00 [°C],
     T_a...average Tamperature [°C],
     rel_h_14...relative humidity messured at 14:00 [%],
