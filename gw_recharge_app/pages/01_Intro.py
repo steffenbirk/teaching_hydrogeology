@@ -6,6 +6,10 @@ from data_loader import load_data, get_csv_path
 from datetime import date
 from pathlib import Path
 
+import os
+print("Working directory:", os.getcwd())
+print("File location:", Path(__file__).resolve())
+
 ROOT = Path(__file__).resolve().parents[1]  # go up from /pages to repo root
 DATA = ROOT / "data"
 IMAGES = ROOT / "assets" / "images"
