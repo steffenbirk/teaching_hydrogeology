@@ -12,8 +12,8 @@ with col0:
     st.image('gw_recharge_app/assets/images/Linear_reservoir.png', caption= 'Figure 1: Model for a linear reservoir.')
 with col00:
     st.write('$V$...Volume of stored water [$mm$]')
-    st.write('$Q$...Discharge, runoff [$mm d^{-1}$]')
-    st.write('$R$...Groundwater recharge [$mm d^{-1}$]')
+    st.write('$Q$...Discharge, runoff [$mm*d^{-1}$]')
+    st.write('$R$...Groundwater recharge [$mm*d^{-1}$]')
     st.write('$i$...Timestep [$d$]')
     st.write('$\Delta t $...Difference between two timesteps [$d$]')
 
