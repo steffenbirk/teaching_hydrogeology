@@ -11,11 +11,11 @@ col0, col00 = st.columns(2)
 with col0:
     st.image('gw_recharge_app/assets/images/Linear_reservoir.png', caption= 'Figure 1: Model for a linear reservoir.')
 with col00:
-    st.write('$V$...Volume of stored water [$L³$]')
-    st.write('$Q$...Discharge, runoff [$L³T^{-1}$]')
-    st.write('$R$...Groundwater recharge [$L³T^{-1}$]')
-    st.write('$i$...Timestep [$T$]')
-    st.write('$\Delta t $...Difference between two timesteps [$T$]')
+    st.write('$V$...Volume of stored water [$mm$]')
+    st.write('$Q$...Discharge, runoff [$mm d^{-1}$]')
+    st.write('$R$...Groundwater recharge [$mm d^{-1}$]')
+    st.write('$i$...Timestep [$d$]')
+    st.write('$\Delta t $...Difference between two timesteps [$d$]')
 
 st.write('')
 st.write('A way to quantify, how much water is stored and released from an aquifer is the **recession coefficient S**.')
@@ -64,18 +64,18 @@ for i in range(1, len(In)):
 
 # ploting the data
 fig, ax1 = plt.subplots(figsize=(12,5)) 
-ax1.plot(st.session_state.data.index, V, color = 'steelblue', label = 'V [L³]')
+ax1.plot(st.session_state.data.index, V, color = 'steelblue', label = 'V [mm]')
 ax1.set_xlabel('Date')
-ax1.set_ylabel('Storage volume [L]')
+ax1.set_ylabel('Storage volume [mm]')
 ax1.set_ylim(0,max(V)+10)
 ax1.grid('True')
 ax1.margins(x=0, y=0) 
 ax1.spines['top'].set_visible(False) 
 
 ax2 = ax1.twinx()
-ax2.bar(st.session_state.data.index, In, color='skyblue', label = 'R [$L³T^{-1}$]')
-ax2.plot(st.session_state.data.index, Out, color = 'navy', label = 'Q [$L³T^{-1}$]')
-ax2.set_ylabel('Flow [$L³T^{-1}$]')
+ax2.bar(st.session_state.data.index, In, color='skyblue', label = 'R [$mm d^{-1}$]')
+ax2.plot(st.session_state.data.index, Out, color = 'navy', label = 'Q [$mm d^{-1}$]')
+ax2.set_ylabel('Flow [$mm d^{-1}$]')
 ax2.set_ylim(0,max(In)+10)
 ax2.spines['top'].set_visible(False)
 
