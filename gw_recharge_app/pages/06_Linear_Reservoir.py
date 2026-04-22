@@ -24,9 +24,8 @@ st.write('The groundwater recharge and initial stored water volume can as well b
 st.write('')
 
 st.subheader(':blue-background[Model for a Linear Reservoir]', divider="blue")
-# Interactive user input for the Parameters
 
-## Storage coefficient
+# Interactive user input for the Parameters
 col1, col2= st.columns(2)
 with col1:
     k = st.slider('Recession coefficient S', 0.0,1.0,0.1,0.01)
@@ -40,15 +39,15 @@ with col2:
 ETA_options=['Oudin', 'Haude', 'Penman-Monteith']
 ETA_selection=st.radio('Select with which ETP data you want to continue:', ETA_options, horizontal=True, )
 # load data from ETP_data.csv
-if ETA_selection=='Oudin':
-    ETA=st.session_state.ETA.Oudin
-    gw_recharge=st.session_state.gw_recharge.Oudin
-elif ETA_selection=='Haude':
-    ETA=st.session_state.ETA.Haude
-    gw_recharge=st.session_state.gw_recharge.Haude
+if ETA_selection == "Oudin":
+    ETA = st.session_state.ETA["Oudin"]
+    gw_recharge = st.session_state.gw_recharge["Oudin"]
+elif ETA_selection == "Haude":
+    ETA = st.session_state.ETA["Haude"]
+    gw_recharge = st.session_state.gw_recharge["Haude"]
 else:
-    ETA=st.session_state.ETA.PM
-    gw_recharge=st.session_state.gw_recharge.PM
+    ETA = st.session_state.ETA["PM"]
+    gw_recharge = st.session_state.gw_recharge["PM"]
 
 data = st.session_state.data
 precip = data['precip']

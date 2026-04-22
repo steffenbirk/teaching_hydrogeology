@@ -74,7 +74,6 @@ def update_moisture_content(S_B_A, precip, ETA, TAW):
 
     return updated_S_B_A, excess_water
 
-
 def run_recharge_simulation(TAW, p, ETP, precip):
     '''
     input params:
@@ -87,29 +86,28 @@ def run_recharge_simulation(TAW, p, ETP, precip):
         S_B_A...array: Soilwater storage [mm/d]
         gw_recharge...array: Groundwater recharge [mm/d]
     '''
-
-    # setting initial values, initiating arrays/variables
     gw_recharge = np.zeros(len(ETP))
     S_B_A = np.zeros(len(ETP))
-    
-    initial_soil_moisture = TAW # assuming that the soil is saturated at the beginning 
+
+    initial_soil_moisture = TAW
     S_B_A[0] = initial_soil_moisture
 
-    initial_fraction_of_ETP = 1 # ETA/ETP
+    initial_fraction_of_ETP = 1
     ETA = np.zeros(len(ETP))
-    
-    # then update the values
-    for i in np.arange(1, len(ETP)):   # for every value within the arrays
-        
-        ETA[0] = initial_fraction_of_ETP * ETP[i]
-        
-        K_s = linear_reduction_function(S_B_A[i-1], TAW, p)
-        ETA[i] = K_s * ETP[i]  
 
-        S_B_A[i], excess_water = update_moisture_content(S_B_A[i-1], precip.iloc[i], ETA[i], TAW)
+    ETA[0] = initial_fraction_of_ETP * ETP.iloc[0]
 
+    for i in range(1, len(ETP)):
+        K_s = linear_reduction_function(S_B_A[i - 1], TAW, p)
+        ETA[i] = K_s * ETP.iloc[i]
+        S_B_A[i], excess_water = update_moisture_content(
+            S_B_A[i - 1],
+            precip.iloc[i],
+            ETA[i],
+            TAW,
+        )
         gw_recharge[i] = excess_water
-    
+
     return gw_recharge, ETA, S_B_A
 
 def water_budget(TAW, p, alpha, V_GW_0, Irr_eff, Q_env, A_irr_tot, GWL_0, Sy, gw_recharge, precip, ETA, irrigated=True):

@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 import gw_recharge_functions as func
@@ -57,28 +56,29 @@ st.session_state.ETA.PM = ETA_PM
 # st.pills to select the ETP
 ETP_options=['Oudin', 'Haude', 'Penman-Monteith']
 ETP_selection=st.radio('Select with which ETP data you want to continue:', ETP_options, horizontal=True, )
-# get data 
-if ETP_selection=='Oudin':
-    gw_recharge=gw_recharge_Oudin
-    ETA=ETA_Oudin
-    S_B_A=S_B_A_Oudin
-    ETP= st.session_state.ETP.Oudin
-elif ETP_selection=='Haude':
-    gw_recharge=gw_recharge_Haude
-    ETA=ETA_Haude
-    S_B_A=S_B_A_Haude
-    ETP=st.session_state.ETP.Haude
+
+# get data
+if ETP_selection == "Oudin":
+    gw_recharge = gw_recharge_Oudin
+    ETA = ETA_Oudin
+    S_B_A = S_B_A_Oudin
+    ETP = st.session_state.ETP["Oudin"]
+elif ETP_selection == "Haude":
+    gw_recharge = gw_recharge_Haude
+    ETA = ETA_Haude
+    S_B_A = S_B_A_Haude
+    ETP = st.session_state.ETP["Haude"]
 else:
-    gw_recharge=gw_recharge_PM
-    ETA=ETA_PM
-    S_B_A=S_B_A_PM
-    ETP=st.session_state.ETP.PM
+    gw_recharge = gw_recharge_PM
+    ETA = ETA_PM
+    S_B_A = S_B_A_PM
+    ETP = st.session_state.ETP["PM"]
+
 data = st.session_state.data
 precip = data['precip']
 
 # defining the size and spacing
 fig = plt.figure(figsize=(14, 8))
-
 ax1=plt.subplot2grid((6,5),(0,0), colspan=3, rowspan=2)
 ax2=plt.subplot2grid((6,5),(2,0), colspan=3, rowspan=2)
 ax3=plt.subplot2grid((6,5),(4,0), colspan=3, rowspan=2)
@@ -149,9 +149,6 @@ fig.text(0.67,0.84,annual_gwrc_precip)
 fig.text(0.88,0.13, annual_ETP_ETA)
 plt.tight_layout()
 st.pyplot(fig)
-
-
-
 
 
 st.subheader(':blue-background[The impact of different ETP-models on the results for groundwater recharge]', divider="blue")

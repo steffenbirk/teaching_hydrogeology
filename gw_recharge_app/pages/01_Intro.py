@@ -78,27 +78,28 @@ min_date = data.index.min().to_pydatetime().date()
 max_date = data.index.max().to_pydatetime().date()
 
 selected_timespan = st.date_input('👇 here you can select a time periode 👇',value=('2020-01-01','2020-12-31'), min_value=min_date, max_value=max_date, format='YYYY-MM-DD')
-start_date = pd.to_datetime(selected_timespan[0])
-end_date = pd.to_datetime(selected_timespan[1])
-selected_data = data.loc[start_date:end_date]
-st.session_state.data=data.loc[selected_timespan[0]:selected_timespan[1]]
-st.session_state.ETP = pd.DataFrame(index=st.session_state.data.index)
-st.session_state.ETA = pd.DataFrame(index=st.session_state.data.index)
-st.session_state.gw_recharge = pd.DataFrame(index=st.session_state.data.index)
+start_date = pd.Timestamp(selected_timespan[0])
+end_date = pd.Timestamp(selected_timespan[1])
+selected_data = data.loc[start_date:end_date].copy()
+
+st.session_state.data = selected_data.copy()
+st.session_state.ETP = {}
+st.session_state.ETA = {}
+st.session_state.gw_recharge = {}
 
 # calculating data that needs to be available from multiple pages and saving data in session state
 lat_graz = 47.076668*np.pi/180  # in rad
 ETP_oudin=pyet.oudin(selected_data['T_a'], lat_graz)
-st.session_state.ETP.Oudin = ETP_oudin
+st.session_state.ETP["Oudin"] = ETP_oudin
 
 ETP_haude=pyet.haude(selected_data['T_14'], selected_data['rel_h_14'])
 ETP_Haude=ETP_haude.clip(0,7)
-st.session_state.ETP.Haude = ETP_Haude
+st.session_state.ETP["Haude"] = ETP_Haude
 
 rs_MJperm2=selected_data['rs']/100 #for the calculation the solar radiation is needed in MJ/m2
 wind_2m=selected_data['wind_speed']*4.87/(np.log((67.8*20)-5.42)) #as the wind mesurements at uni-graz are taken higher the wind messurements need to be adjustet (~ 20 m above ground surface)
 ETP_pm=pyet.pm_fao56(tmean=selected_data['T_a'], wind=wind_2m, rs=rs_MJperm2, lat=lat_graz, rh=selected_data['rel_h_a'], elevation=366 )
-st.session_state.ETP.PM = ETP_pm
+st.session_state.ETP["PM"] = ETP_pm
 
 
 # Navigation at the bottom of the side - useful for mobile phone users     

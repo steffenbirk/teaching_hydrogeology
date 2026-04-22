@@ -7,7 +7,7 @@ ROOT = Path(__file__).parent  # repo root
 DATA = ROOT / "data"
 IMAGES = ROOT / "assets" / "images"
 
-st.set_page_config(page_title = "iNUX - Groundwater Recharge", page_icon="images\iNUX_wLogo.png")
+st.set_page_config(page_title="iNUX - Groundwater Recharge", page_icon="images/iNUX_wLogo.png",)
 
 pages={
     '👋 Intro':[

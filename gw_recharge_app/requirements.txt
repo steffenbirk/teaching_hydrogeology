@@ -1,8 +1,8 @@
-streamlit>=1.36.0
-pandas
-numpy
-pyet
-matplotlib
-st_pages
-pathlib
+streamlit==1.56.0
+pandas==3.0.2
+numpy==2.4.4
+matplotlib==3.10.8
+xarray==2026.4.0
+pyet==1.4.0
+st-pages==1.0.1
 datetime
