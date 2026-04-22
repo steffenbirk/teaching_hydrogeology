@@ -42,20 +42,20 @@ with col2:
 data = st.session_state.data
 precip = data['precip']
 
-gw_recharge_Haude, ETA_Haude, S_B_A_Haude= func.run_recharge_simulation(TAW, p, st.session_state.ETP.Haude, precip)
+gw_recharge_Haude, ETA_Haude, S_B_A_Haude= func.run_recharge_simulation(TAW, p, st.session_state.ETP["Haude"], precip)
 gw_recharge_Haude_cum=np.cumsum(gw_recharge_Haude)
-st.session_state.ETA.Haude = ETA_Haude
-st.session_state.gw_recharge.Haude=gw_recharge_Haude
+st.session_state.ETA["Haude"] = ETA_Haude
+st.session_state.gw_recharge["Haude"]=gw_recharge_Haude
 
-gw_recharge_Oudin, ETA_Oudin, S_B_A_Oudin= func.run_recharge_simulation(TAW, p, st.session_state.ETP.Oudin, precip)
+gw_recharge_Oudin, ETA_Oudin, S_B_A_Oudin= func.run_recharge_simulation(TAW, p, st.session_state.ETP["Oudin"], precip)
 gw_recharge_Oudin_cum=np.cumsum(gw_recharge_Oudin)
-st.session_state.gw_recharge.Oudin=gw_recharge_Oudin
-st.session_state.ETA.Oudin = ETA_Oudin
+st.session_state.gw_recharge["Oudin"]=gw_recharge_Oudin
+st.session_state.ETA["Oudin"] = ETA_Oudin
 
-gw_recharge_PM, ETA_PM, S_B_A_PM= func.run_recharge_simulation(TAW, p, st.session_state.ETP.PM, precip)
+gw_recharge_PM, ETA_PM, S_B_A_PM= func.run_recharge_simulation(TAW, p, st.session_state.ETP["PM"], precip)
 gw_recharge_PM_cum=np.cumsum(gw_recharge_PM)
-st.session_state.gw_recharge.PM=gw_recharge_PM
-st.session_state.ETA.PM = ETA_PM
+st.session_state.gw_recharge["PM"]=gw_recharge_PM
+st.session_state.ETA["PM"]  = ETA_PM
 
 
 # st.pills to select the ETP
