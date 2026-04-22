@@ -129,7 +129,7 @@ ax_right2.plot(data.index, cumulative_ETA, color='tomato', label='cumulative ETA
 global annual_total_ETA, annual_total_ETP
 ## save the annual total (last value of the arrays)
 annual_total_ETA = cumulative_ETA[-1]
-annual_total_ETP = cumulative_ETP[-1]
+annual_total_ETP = cumulative_ETP.iloc[-1]
 
 # add labels and legend
 ##left
