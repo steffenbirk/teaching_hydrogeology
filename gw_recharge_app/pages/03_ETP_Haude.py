@@ -32,30 +32,30 @@ fig2, ax2= plt.subplots(figsize=(12,5))
 fig2.suptitle('ETP (Haude) for Graz', fontsize=16)
 
 with st.expander('click here to take a look at the data, edit or save as csv'):
-    st.session_state.ETP.Haude = st.data_editor(st.session_state.ETP.Haude)
+    st.session_state.ETP['Haude'] = st.data_editor(st.session_state.ETP['Haude'])
 
 #ax.plot(selected_data.index,PET_oudin)
-ax2.set_title(f'from {min(st.session_state.ETP.index):%d-%m-%Y} to {max(st.session_state.ETP.index):%d-%m-%Y}')
+ax2.set_title(f'from {min(st.session_state.ETP["Haude"].index):%d-%m-%Y} to {max(st.session_state.ETP["Haude"].index):%d-%m-%Y}')
 
 # st.pills so the user can deside which additional data gets shown
 options2= ['relative humidity', 'temperature']
 selection2= st.pills('select data to show in the plot:', options2, selection_mode='multi')
 
 ## plot ETP
-l21=ax2.plot(st.session_state.ETP.index, st.session_state.ETP.Haude, color='darkgreen', label='Evapotranspiration, Haude', zorder=10)
+l21=ax2.plot(st.session_state.ETP["Haude"].index, st.session_state.ETP["Haude"], color='darkgreen', label='Evapotranspiration, Haude', zorder=10)
 ax2.set_ylabel('$ETP_{Haude}$ [mm/d]')
 
 ## plot rel_h_14
 if 'relative humidity' in selection2:
     ax22=ax2.twinx()
-    l22=ax22.plot(st.session_state.ETP.index, selected_data['rel_h_14'], color='mediumseagreen', label='relative humidity at 14:00', linewidth=0.7, ls='--', zorder=2)
+    l22=ax22.plot(st.session_state.ETP["Haude"].index, selected_data['rel_h_14'], color='mediumseagreen', label='relative humidity at 14:00', linewidth=0.7, ls='--', zorder=2)
     ax22.set_ylabel(r'$h_{14}$ [%]')
     ax22.spines['top'].set_visible(False)
 ## plot T_14
 if 'temperature' in selection2:
     ax23=ax2.twinx()
     ax23.spines.right.set_position(("axes", 1.08))
-    l23=ax23.plot(st.session_state.ETP.index, selected_data['T_14'], color='yellowgreen', label='temperature at 14:00', linewidth=0.7, ls='--', zorder=2)
+    l23=ax23.plot(st.session_state.ETP["Haude"].index, selected_data['T_14'], color='yellowgreen', label='temperature at 14:00', linewidth=0.7, ls='--', zorder=2)
     ax23.set_ylabel(r'$T_{14}$ [°C]')
     ax23.spines['top'].set_visible(False)
 

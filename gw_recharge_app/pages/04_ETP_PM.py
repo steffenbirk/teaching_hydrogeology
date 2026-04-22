@@ -52,11 +52,11 @@ rs_MJperm2=selected_data['rs']/1000000 #for the calculation the solar radiation 
 wind_2m=selected_data['wind_speed']*4.87/(np.log((67.8*20)-5.42)) #as the wind mesurements at uni-graz are taken higher the wind messurements need to be adjustet (~ 20 m above ground surface)
 
 with st.expander('click here to take a look at the data, edit or save as csv'):
-    st.session_state.ETP.PM = st.data_editor(st.session_state.ETP.PM)
+    st.session_state.ETP['PM'] = st.data_editor(st.session_state.ETP['PM'])
 
-ax3.set_title(f'from {min(st.session_state.ETP.index):%d-%m-%Y} to {max(st.session_state.ETP.index):%d-%m-%Y}')
+ax3.set_title(f'from {min(st.session_state.ETP["PM"].index):%d-%m-%Y} to {max(st.session_state.ETP["PM"].index):%d-%m-%Y}')
 ## plot ETP
-l31=ax3.plot(st.session_state.ETP.index, st.session_state.ETP.PM, color='darkblue', label='Evapotranspration, Pennman-Monteith', zorder=10)
+l31=ax3.plot(st.session_state.ETP["PM"].index, st.session_state.ETP["PM"], color='darkblue', label='Evapotranspration, Pennman-Monteith', zorder=10)
 ax3.set_ylabel(' $ETP_{pm}$ [mm/d] ')
 ax3.spines['top'].set_visible(False)
 ## st.pills so the user can choose which additional data is shown
@@ -65,21 +65,21 @@ selection3= st.pills('select (input) data to show in the plot:', options3, selec
 ## plot wind
 if 'wind' in selection3:
     ax32=ax3.twinx()
-    l32=ax32.plot(st.session_state.ETP.index, wind_2m, color='orchid', label='Wind speed', ls='--', linewidth=0.7, zorder=2)
+    l32=ax32.plot(st.session_state.ETP["PM"].index, wind_2m, color='orchid', label='Wind speed', ls='--', linewidth=0.7, zorder=2)
     ax32.set_ylabel('wind [m/s]')
     ax32.spines['top'].set_visible(False)
 ## plot T_a
 if 'temperature' in selection3:
     ax33=ax3.twinx()
     ax33.spines.right.set_position(("axes", 1.08))
-    l33=ax33.plot(st.session_state.ETP.index, selected_data['T_a'], color='goldenrod', label='Average temperature', ls='--', linewidth=0.7, zorder=2)
+    l33=ax33.plot(st.session_state.ETP["PM"].index, selected_data['T_a'], color='goldenrod', label='Average temperature', ls='--', linewidth=0.7, zorder=2)
     ax33.set_ylabel(r'$T_{a}$ [°C]')
     ax33.spines['top'].set_visible(False)
 ## plot rs
 if 'solar radiation' in selection3:
     ax34=ax3.twinx()
     ax34.spines.right.set_position(("axes", 1.16))
-    l34=ax34.plot(st.session_state.ETP.index, rs_MJperm2, color='darkorange', label='Incoming solar radiation', ls='--', linewidth=0.7, zorder=2)
+    l34=ax34.plot(st.session_state.ETP["PM"].index, rs_MJperm2, color='darkorange', label='Incoming solar radiation', ls='--', linewidth=0.7, zorder=2)
     ax34.set_ylabel(r'solar radiation [MJ/m²]')
     ax34.spines['top'].set_visible(False)
 ## plot h

@@ -23,6 +23,11 @@ st.write('By changing the values of the slider below the effect of different val
 st.write('The groundwater recharge and initial stored water volume can as well be controlled by changing the slider values.')
 st.write('')
 
+if "data" not in st.session_state or "ETA" not in st.session_state or "gw_recharge" not in st.session_state:
+    st.warning("Please run the recharge page first.")
+    st.switch_page("pages/05_Groundwater_Recharge.py")
+    st.stop()
+
 st.subheader(':blue-background[Model for a Linear Reservoir]', divider="blue")
 
 # Interactive user input for the Parameters

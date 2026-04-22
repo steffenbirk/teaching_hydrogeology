@@ -38,27 +38,27 @@ E_r, R_e= func.evaporation_from_radiation(lat=47.076668,doy=selected_data.index.
 #if 'oudin' not in st.session_state:
 
 with st.expander('click here to take a look at the data, edit or save as csv'):
-    st.session_state.ETP.Oudin= st.data_editor(st.session_state.ETP.Oudin)
+    st.session_state.ETP['Oudin'] = st.data_editor(st.session_state.ETP['Oudin'])
 
 # st.pills so the user can deside which additional data gets shown
 options1=['extraterrestrial radiation', 'temperature']
 selection1 = st.pills('Select additional input data to plot:', options1, selection_mode='multi')
 #ax.plot(selected_data.index,PET_oudin)
-ax1.set_title(f'from {min(st.session_state.ETP.Oudin.index):%d-%m-%Y} to {max(st.session_state.ETP.index):%d-%m-%Y}')
+ax1.set_title(f'from {min(st.session_state.ETP["Oudin"].index):%d-%m-%Y} to {max(st.session_state.ETP["Oudin"].index):%d-%m-%Y}')
 ## plot ETP
-l11=ax1.plot(st.session_state.ETP.index, st.session_state.ETP.Oudin, color='darkorange', label='Evapotranspration, Oudin et al. (2005)', zorder=10)
+l11 = ax1.plot(st.session_state.ETP["Oudin"].index, st.session_state.ETP["Oudin"], color='darkorange', label='Evapotranspration, Oudin et al. (2005)', zorder=10)
 ax1.set_ylabel(r'$ETP_{Oudin}$ [mm/d]')
 ## plot E_r
 if 'extraterrestrial radiation' in selection1:
     ax12=ax1.twinx()
-    l12=ax12.plot(st.session_state.ETP.index, E_r, color='gold', label=r'Extraterrestrial radiation ($E_{r}$)', linewidth=0.7, ls='--', zorder=2)
+    l12 = ax12.plot(st.session_state.ETP["Oudin"].index, E_r, color='gold', label=r'Extraterrestrial radiation ($E_{r}$)', linewidth=0.7, ls='--', zorder=2)
     ax12.set_ylabel(r'$E_{r}$ [mm/d]')
     ax12.spines['top'].set_visible(False)
 ## plot T_avg
 if 'temperature' in selection1:
     ax13=ax1.twinx()
     ax13.spines.right.set_position(("axes", 1.08))
-    l13=ax13.plot(st.session_state.ETP.index, selected_data['T_a'], color='goldenrod', label=r'Average temperature $T_{a}$', linewidth=0.7, ls='--', zorder=2)
+    l13=ax13.plot(st.session_state.ETP["Oudin"].index, selected_data['T_a'], color='goldenrod', label=r'Average temperature $T_{a}$', linewidth=0.7, ls='--', zorder=2)
     ax13.set_ylabel(r'$T_a$ [°C]')
     ax13.spines['top'].set_visible(False)
 

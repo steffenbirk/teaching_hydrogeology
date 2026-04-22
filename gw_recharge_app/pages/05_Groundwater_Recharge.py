@@ -27,6 +27,11 @@ st.markdown('''
 
 st.image('gw_recharge_app/assets/images/water_stress.png', caption='Fig.2: Linear reduction function describing how actual evapotranspiration decreases in proportion to the amount of water remaining in the soil water storage (modified after FAO Irrigation and Drainage Paper No. 56)')
 
+if "data" not in st.session_state or "ETP" not in st.session_state:
+    st.warning("Please start on the Intro page first.")
+    st.switch_page("pages/01_Intro.py")
+    st.stop()
+
 st.subheader(':blue-background[Groundwater Recharge]', divider="blue")
 col1, col2, col3 = st.columns(3)
 with col1:
