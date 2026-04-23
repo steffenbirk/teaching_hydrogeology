@@ -29,7 +29,7 @@ columns_lic = st.columns((5,1))
 with columns_lic[0]:
     st.markdown(f'Developed by {", ".join(author_list)} ({year}). <br> {institution_text}', unsafe_allow_html=True)
 with columns_lic[1]:
-    image_path = Path(__file__).resolve().parent.parent / "images" / "CC_BY-SA_icon.png"
+    image_path = Path(__file__).resolve().parent.parent  / "assets" / "images" / "CC_BY-SA_icon.png"
     st.image(str(image_path))
 
 
